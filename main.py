@@ -5,17 +5,20 @@ def TRACE(s):
     if TRACE_FLAG:
         print(s)
 
-def replace_function_type(s):
-    return s.replace("FORCEINLINE HRESULT I", "HRESULT WINAPI ")
+def get_header(s):
+    '''
+    All necessary imformation is in header'''
+    s = s.replace("FORCEINLINE HRESULT I", "HRESULT WINAPI ")
+    s1 = s.replace('This', 'iface')
+    header = s1.split('{')[0].rstrip()
+    return header
+
 
 def single_function(s):
     '''
     Receives a string for a function
     Returns a string for a function'''
+    header = get_header(s)
+    return header
 
-    s1 = replace_function_type(s)
-    s1 = s1.replace('This', 'iface')
-
-#All necessary imformation is in header
-    header = s1.split('{')[0].rstrip()
 
