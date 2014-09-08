@@ -5,6 +5,31 @@ def TRACE(s):
     if TRACE_FLAG:
         print(s)
 
+
+def isPointer(s:str):
+#Dirty hack
+    return '*' in s or 'BSTR' in s
+
+def isOutPointer(s:str):
+    return isPointer(s) and len([x for x in ('BSTR', 'VARIANT', '**') if x in s]) > 0
+
+def generate_FIXME(paras:list):
+    #FIXME: VERY Dirty hack
+    ret = "FIXME(\"("
+    for i in paras[:-1]:
+        if isPointer(i):
+            ret += "%p "
+        else:
+            ret += "%! "
+    ret = ret.rstrip()
+    ret += ")->("
+    ret += ")" + "\\" + "n\", This"
+    for i in paras[1:-1]:
+        name = i.split(' ')[1].replace('*', '')
+        ret += ", " + name
+    ret += ");"
+    return ret
+
 def get_header(s):
     '''
     All necessary imformation is in header'''

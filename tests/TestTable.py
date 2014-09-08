@@ -25,3 +25,9 @@ TABLE_GET_PARAMETER_LIST = [
 ('static HRESULT WINAPI HTMLXMLHttpRequest_get_responseXML(IHTMLXMLHttpRequest* iface, IDispatch **p)',
 ['IHTMLXMLHttpRequest* iface', 'IDispatch **p'])
 ]
+
+TABLE_GENERATE_FIXME = [
+(['IHTMLXMLHttpRequest* iface', 'IDispatch **p'],
+'FIXME("(%p)->(%p)\\n", This, p);'
+)
+]

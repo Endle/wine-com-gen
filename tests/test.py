@@ -16,6 +16,8 @@ class ConvertTestCase(unittest.TestCase):
         self._test_table(main.get_header, TestTable.TABLE_GET_HEADER)
     def test_get_parameter_list(self):
         self._test_table(main.get_parameter_list, TestTable.TABLE_GET_PARAMETER_LIST)
+    def test_generate_FIXME(self):
+        self._test_table(main.generate_FIXME, TestTable.TABLE_GENERATE_FIXME)
 
 
 if __name__ == "__main__":
