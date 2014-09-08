@@ -13,3 +13,10 @@ TABLE_SINGLE_FUNCTION = [
 
 ''')
 ]
+
+TABLE_GET_HEADER = [
+('''static FORCEINLINE HRESULT IHTMLXMLHttpRequest_get_responseXML(IHTMLXMLHttpRequest* This,IDispatch **p) {
+    return This->lpVtbl->get_responseXML(This,p);
+}''',
+'static HRESULT WINAPI HTMLXMLHttpRequest_get_responseXML(IHTMLXMLHttpRequest* iface, IDispatch **p)')
+]
