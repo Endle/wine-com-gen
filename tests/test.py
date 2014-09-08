@@ -14,6 +14,9 @@ class ConvertTestCase(unittest.TestCase):
         self._test_table(main.single_function, TestTable.TABLE_SINGLE_FUNCTION)
     def test_get_header(self):
         self._test_table(main.get_header, TestTable.TABLE_GET_HEADER)
+    def test_get_parameter_list(self):
+        self._test_table(main.get_parameter_list, TestTable.TABLE_GET_PARAMETER_LIST)
+
 
 if __name__ == "__main__":
     unittest.main(defaultTest="suite")

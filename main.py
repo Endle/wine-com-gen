@@ -13,6 +13,13 @@ def get_header(s):
     header = s1.split('{')[0].rstrip()
     return header
 
+def get_parameter_list(header:str):
+    '''
+    Returns a list'''
+    para = header.split('(')[1].split(')')[0]
+    paras = para.split(',')
+    return [s.strip() for s in paras]
+
 
 def single_function(s):
     '''
