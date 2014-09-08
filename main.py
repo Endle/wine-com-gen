@@ -9,7 +9,7 @@ def get_header(s):
     '''
     All necessary imformation is in header'''
     s = s.replace("FORCEINLINE HRESULT I", "HRESULT WINAPI ")
-    s1 = s.replace('This', 'iface')
+    s1 = s.replace('This,', 'iface, ')
     header = s1.split('{')[0].rstrip()
     return header
 
