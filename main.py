@@ -86,4 +86,9 @@ def single_function(s:str):
         + '}' + newline + newline
     return ret
 
+def multiple_functions(s:str):
+    data = [i.strip() + '}' for i in s.split('}') if i.strip() != ""]
+    outputs = [single_function(i)  for i in data]
+    ret = "".join(outputs)
+    return ret
 

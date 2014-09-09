@@ -18,6 +18,8 @@ class ConvertTestCase(unittest.TestCase):
         self._test_table(main.get_parameter_list, TestTable.TABLE_GET_PARAMETER_LIST)
     def test_generate_FIXME(self):
         self._test_table(main.generate_FIXME, TestTable.TABLE_GENERATE_FIXME)
+    def test_multiple_functions(self):
+        self._test_table(main.multiple_functions, TestTable.TABLE_MULTIPLE_FUNCTIONS)
 
 
 if __name__ == "__main__":
