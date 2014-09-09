@@ -71,11 +71,19 @@ def get_parameter_list(header:str):
     return [s.strip() for s in paras]
 
 
-def single_function(s):
+def single_function(s:str):
     '''
     Receives a string for a function
     Returns a string for a function'''
     header = get_header(s)
-    return header
+    fixme = generate_FIXME(get_parameter_list(header))
+    newline = "\n"
+    ret = header + newline \
+        + '{' + newline \
+        + BEFORE_FIXME + newline \
+        + INDENT + fixme + newline \
+        + INDENT + "return E_NOTIMPL;" + newline \
+        + '}' + newline + newline
+    return ret
 
 
