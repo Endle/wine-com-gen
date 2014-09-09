@@ -20,7 +20,9 @@ def isPointer(s:str):
 def getParaName(para:str):
     #FIXME: Dirty hack
     name = para.split(' ')[1].replace('*', '')
-    if isStr(para):
+    if isPointer(para):
+        return name
+    elif isStr(para):
         return "debugstr_w(" + name + ")"
     elif 'VARIANT' in para:
         return "debugstr_variant(&" + name + ")"
