@@ -5,6 +5,11 @@ def TRACE(s):
     if TRACE_FLAG:
         print(s)
 
+try:
+    from config import *
+except ImportError:
+    print('Load default settings')
+    from config_default import *
 
 def isStr(s:str):
     return 'BSTR' in s
