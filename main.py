@@ -94,3 +94,22 @@ def multiple_functions(s:str):
     ret = "".join(outputs)
     return ret
 
+if __name__ == '__main__':
+    import sys
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        filename = 'input.txt'
+    TRACE('Opening file: ' + filename)
+    with open(filename, 'r') as fin:
+        data = fin.read()
+        result = multiple_functions(data)
+
+    try:
+        output_filename = sys.argv[2]
+    except IndexError:
+        TRACE('Use default output filename')
+        output_filename = 'output.txt'
+
+    with open(output_filename, 'w') as fout:
+        fout.write(result)
