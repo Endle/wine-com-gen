@@ -57,5 +57,7 @@ TABLE_GENERATE_FIXME = [
 (['IHTMLTable2 *iface'],
 'FIXME("(%p)->()\\n", This);'),
 (['IHTMLTable3 *iface', 'BSTR v'],
-'FIXME("(%p)->(%s)\\n", This, debugstr_w(v));')
+'FIXME("(%p)->(%s)\\n", This, debugstr_w(v));'),
+(['IHTMLTable *iface', 'VARIANT v'],
+'FIXME("(%p)->(%s)\\n", This, debugstr_variant(&v));')
 ]

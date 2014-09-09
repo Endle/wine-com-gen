@@ -22,20 +22,22 @@ def getParaName(para:str):
     name = para.split(' ')[1].replace('*', '')
     if isStr(para):
         return "debugstr_w(" + name + ")"
+    elif 'VARIANT' in para:
+        return "debugstr_variant(&" + name + ")"
     else:
         return name
 
 def getOutputSymbol(para:str):
     if isPointer(para):
         return "%p"
-    elif isStr(para):
+    elif isStr(para) or 'VARIANT' in para:
         return "%s" #Need more work in getParaName
     elif 'ULONG' in para:
         return "%u"
     elif 'LONG' in para or 'int' in para:
         return "%d"
     else:
-        raise NotImplementedError
+        raise NotImplementedError('got ' + para)
 
 
 def generate_FIXME(paras:list):
