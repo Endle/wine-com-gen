@@ -28,6 +28,11 @@ TABLE_GET_PARAMETER_LIST = [
 
 TABLE_GENERATE_FIXME = [
 (['IHTMLXMLHttpRequest* iface', 'IDispatch **p'],
-'FIXME("(%p)->(%p)\\n", This, p);'
-)
+'FIXME("(%p)->(%p)\\n", This, p);'),
+(['IHTMLTable2 *iface', 'LONG indexFrom', 'LONG indexTo', 'IDispatch **row'],
+'FIXME("(%p)->(%d %d %p)\\n", This, indexFrom, indexTo, row);'),
+(['IHTMLTable2 *iface'],
+'FIXME("(%p)->()\\n", This);'),
+(['IHTMLTable3 *iface', 'BSTR v'],
+'FIXME("(%p)->(%s)\\n", This, debugstr_w(v));')
 ]

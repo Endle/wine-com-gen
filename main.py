@@ -6,28 +6,48 @@ def TRACE(s):
         print(s)
 
 
-def isPointer(s:str):
-#Dirty hack
-    return '*' in s or 'BSTR' in s
+def isStr(s:str):
+    return 'BSTR' in s
 
-def isOutPointer(s:str):
-    return isPointer(s) and len([x for x in ('BSTR', 'VARIANT', '**') if x in s]) > 0
+def isPointer(s:str):
+    return '*' in s
+
+def getParaName(para:str):
+    #FIXME: Dirty hack
+    name = para.split(' ')[1].replace('*', '')
+    if isStr(para):
+        return "debugstr_w(" + name + ")"
+    else:
+        return name
+
+def getOutputSymbol(para:str):
+    if isPointer(para):
+        return "%p"
+    elif isStr(para):
+        return "%s" #Need more work in getParaName
+    elif 'ULONG' in para:
+        return "%u"
+    elif 'LONG' in para or 'int' in para:
+        return "%d"
+    else:
+        raise NotImplementedError
+
 
 def generate_FIXME(paras:list):
-    #FIXME: VERY Dirty hack
-    ret = "FIXME(\"("
-    for i in paras[:-1]:
-        if isPointer(i):
-            ret += "%p "
-        else:
-            ret += "%! "
+    #FIXME: No Robust
+    if len(paras) == 0:
+        raise RuntimeError("Not a valid parameter list")
+    if len(paras) == 1:
+        return "FIXME(\"(%p)->()\\n\", This);"
+    ret = "FIXME(\"(%p)->("
+    for i in paras[1:]:
+        ret += getOutputSymbol(i) + " "
     ret = ret.rstrip()
-    ret += ")->("
+
     ret += ")" + "\\" + "n\", This"
     for i in paras[1:-1]:
-        name = i.split(' ')[1].replace('*', '')
-        ret += ", " + name
-    ret += ");"
+        ret += ", " + getParaName(i)
+    ret += ", " + getParaName(paras[-1]) + ");"
     return ret
 
 def get_header(s):
