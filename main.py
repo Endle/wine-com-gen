@@ -68,7 +68,7 @@ def get_header(s):
     '''
     All necessary imformation is in header'''
     s = s.replace("FORCEINLINE HRESULT I", "HRESULT WINAPI ")
-    s1 = s.replace('This,', 'iface,')
+    s1 = s.replace('* This', ' *iface')
 
 #FIXME: Dirty hack for spaces
     s2 = s1.replace(', ', ',')
