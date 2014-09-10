@@ -45,6 +45,17 @@ TABLE_SINGLE_FUNCTION = [
     return E_NOTIMPL;
 }
 
+'''),
+('''static FORCEINLINE HRESULT IHTMLXMLHttpRequest_setRequestHeader(IHTMLXMLHttpRequest* This,BSTR bstrHeader,BSTR bstrValue) {
+    return This->lpVtbl->setRequestHeader(This,bstrHeader,bstrValue);
+}''',
+'''static HRESULT WINAPI HTMLXMLHttpRequest_setRequestHeader(IHTMLXMLHttpRequest* iface, BSTR bstrHeader, BSTR bstrValue)
+{
+    HTMLXMLHttpRequest *This = impl_from_IHTMLXMLHttpRequest(iface);
+    FIXME("(%p)->(%s %s)\\n", This, debugstr_w(bstrHeader), debugstr_w(bstrValue));
+    return E_NOTIMPL;
+}
+
 ''')
 ]
 

@@ -59,12 +59,22 @@ def generate_FIXME(paras:list):
     ret += ", " + getParaName(paras[-1]) + ");"
     return ret
 
+def replace_all(s:str, find:str, to:str):
+    while find in s:
+        s = s.replace(find, to)
+    return s
+
 def get_header(s):
     '''
     All necessary imformation is in header'''
     s = s.replace("FORCEINLINE HRESULT I", "HRESULT WINAPI ")
-    s1 = s.replace('This,', 'iface, ')
-    header = s1.split('{')[0].rstrip()
+    s1 = s.replace('This,', 'iface,')
+
+#FIXME: Dirty hack for spaces
+    s2 = s1.replace(', ', ',')
+    s3 = s2.replace(',', ', ')
+
+    header = s3.split('{')[0].rstrip()
     return header
 
 def get_parameter_list(header:str):
